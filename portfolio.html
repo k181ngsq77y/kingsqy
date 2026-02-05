@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kingsqy — Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Inter,sans-serif;
+  background:radial-gradient(circle at top,#0b1228,#05070f 70%);
+  color:#e6e9ef;
+}
+
+/* Background glow */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at 20% 30%,rgba(77,163,255,.15),transparent),
+             radial-gradient(circle at 80% 70%,rgba(77,163,255,.15),transparent);
+  z-index:-1;
+}
+
+.online{
+  position:fixed;
+  top:15px;
+  right:15px;
+  background:#111827;
+  padding:10px 15px;
+  border-radius:12px;
+  font-size:14px;
+}
+
+.dot{
+  width:10px;height:10px;
+  background:#22c55e;
+  border-radius:50%;
+  display:inline-block;
+  margin-right:6px;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{opacity:.4}
+  50%{opacity:1}
+  100%{opacity:.4}
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+h1{
+  text-align:center;
+  font-size:42px;
+  margin-bottom:30px;
+  background:linear-gradient(90deg,#4da3ff,#8ec5ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* FILTER */
+.filters{text-align:center;margin-bottom:30px}
+
+.filters button{
+  padding:12px 20px;
+  margin:6px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  background:#111827;
+  color:white;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:#111827;
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(40px);
+  transition:.6s;
+}
+
+.card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 30px rgba(77,163,255,.4);
+}
+
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:20px;
+}
+
+/* LIGHTBOX */
+#lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+
+#lightbox img{
+  max-width:90%;
+  max-height:90%;
+}
+
+.review{
+  display:flex;
+  gap:15px;
+  align-items:center;
+  background:#111827;
+  padding:18px;
+  border-radius:14px;
+  margin:15px 0;
+}
+
+.review img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+}
+
+.back{
+  display:block;
+  text-align:center;
+  margin-top:40px;
+  color:#4da3ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="online">
+<span class="dot"></span>
+<span id="count">24</span> osób online
+</div>
+
+<div class="container">
+
+<h1>Moje Projekty</h1>
+
+<div class="filters">
+<button onclick="filter('all')">Wszystko</button>
+<button onclick="filter('discord')">Discord Projects</button>
+<button onclick="filter('graphics')">Graphics</button>
+</div>
+
+<div class="gallery">
+
+<div class="card discord">
+<img src="https://cdn.discordapp.com/icons/1464564184518885378/b73478f78e26e0584d9e27478ffa6473.webp?size=1024">
+<div class="card-content">Services Astral</div>
+</div>
+
+<div class="card discord">
+<img src="https://cdn.discordapp.com/icons/1464602156350050337/b79161962f01d8ecc70ba7eb6e42c881.webp?size=1024">
+<div class="card-content">Community Astral</div>
+</div>
+
+<div class="card discord">
+<img src="https://cdn.discordapp.com/attachments/1466932507772452874/1469022663786762363/ok3.png?ex=69862578&is=6984d3f8&hm=9eab1377506946f71f7c498dab7889d57b9c114c36feacb83c7f7aa4e581da3f&">
+<div class="card-content">Astral Customs CS2</div>
+</div>
+
+<div class="card graphics">
+<img src="https://media.discordapp.net/attachments/1466932507772452874/1467655359488331979/image.png?ex=6985c951&is=698477d1&hm=30fa99eca2362b55381582f6b5f2535323961f99b84f2588c0e6e5cdac2d8af8&=&format=webp&quality=lossless">
+<div class="card-content">Banner Astral</div>
+</div>
+
+</div>
+
+<h2>Recenzje</h2>
+<div id="reviews"></div>
+
+<a href="index.html" class="back">← Wróć</a>
+
+</div>
+
+<div id="lightbox" onclick="this.style.display='none'">
+<img id="lightbox-img">
+</div>
+
+<script>
+/* ONLINE COUNTER */
+let c=24;
+setInterval(()=>{
+ c+=Math.floor(Math.random()*3-1);
+ if(c<15)c=18;
+ if(c>60)c=35;
+ document.getElementById("count").textContent=c;
+},3000);
+
+/* FILTER */
+function filter(type){
+ document.querySelectorAll('.card').forEach(c=>{
+  c.style.display=(type==='all'||c.classList.contains(type))?'block':'none';
+ });
+}
+
+/* LIGHTBOX */
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightbox-img");
+
+document.querySelectorAll(".card img").forEach(img=>{
+ img.onclick=e=>{
+  lightbox.style.display="flex";
+  lightboxImg.src=e.target.src;
+ };
+});
+
+/* SCROLL ANIMATION */
+const obs=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{
+  if(e.isIntersecting)e.target.classList.add("show");
+ });
+});
+
+document.querySelectorAll(".card").forEach(c=>obs.observe(c));
+
+/* REVIEWS */
+const names=["Alex","Chris","Daniel","Max","Noah","Leo"];
+const texts=["Top jakość!","Pełen profesjonalizm.","Wygląda premium.","Super robota.","Polecam!","Świetny kontakt."];
+
+const box=document.getElementById("reviews");
+
+for(let i=0;i<6;i++){
+ let div=document.createElement("div");
+ div.className="review";
+ div.innerHTML=`
+ <img src="https://i.pravatar.cc/100?img=${Math.floor(Math.random()*70)}">
+ <div><b>${names[i]}</b><br>${texts[i]}</div>`;
+ box.appendChild(div);
+}
+</script>
+
+</body>
+</html>

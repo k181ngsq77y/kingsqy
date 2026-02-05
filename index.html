@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kingsqy — Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Inter,sans-serif;
+  background:linear-gradient(135deg,#05070f,#0a0f24,#0d1b3d);
+  color:#e6e9ef;
+  overflow-x:hidden;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+/* HERO */
+.hero{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:90px 20px 50px;
+  animation:fadeUp 1s ease;
+}
+
+.avatar{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid rgba(77,163,255,.5);
+  box-shadow:0 0 40px rgba(77,163,255,.35);
+  margin-bottom:20px;
+  transition:.3s;
+}
+
+.avatar:hover{transform:scale(1.05)}
+
+h1{
+  font-size:44px;
+  margin-bottom:10px;
+  background:linear-gradient(90deg,#4da3ff,#8ec5ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+  color:#9fb3c8;
+  font-size:18px;
+  margin-bottom:25px;
+}
+
+.socials{
+  display:flex;
+  gap:20px;
+  font-size:22px;
+}
+
+.socials a{
+  color:#9fb3c8;
+  transition:.25s;
+}
+
+.socials a:hover{
+  color:#4da3ff;
+  transform:translateY(-3px) scale(1.1);
+}
+
+section{margin-top:70px}
+
+.section-title{
+  font-size:26px;
+  margin-bottom:25px;
+  color:#8ec5ff;
+}
+
+/* CARD */
+.card{
+  background:rgba(15,20,35,.7);
+  padding:30px;
+  border-radius:16px;
+  line-height:1.7;
+  color:#c7d2e0;
+  border:1px solid rgba(77,163,255,.15);
+  backdrop-filter:blur(10px);
+  box-shadow:0 10px 40px rgba(0,0,0,.6);
+}
+
+/* SKILLS */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:16px;
+}
+
+.skill{
+  background:rgba(20,26,45,.9);
+  padding:18px;
+  border-radius:14px;
+  text-align:center;
+  color:#d6e2f2;
+  font-weight:600;
+  border:1px solid rgba(77,163,255,.18);
+  transition:.25s;
+}
+
+.skill:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 25px rgba(77,163,255,.35);
+}
+
+/* PROFILE LINKS */
+.profiles{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+
+.profile{
+  background:rgba(15,20,35,.8);
+  padding:30px;
+  border-radius:18px;
+  border:1px solid rgba(77,163,255,.15);
+  transition:.3s;
+}
+
+.profile:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 0 30px rgba(77,163,255,.25);
+}
+
+.profile a{
+  text-decoration:none;
+  color:#4da3ff;
+  font-size:15px;
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+footer{
+  margin-top:80px;
+  padding:30px 0;
+  text-align:center;
+  color:#6b7280;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="hero">
+    <img src="avatar.png" class="avatar">
+    <h1>kingsqy</h1>
+    <div class="subtitle">
+      Developer C++ • JavaScript • HTML <br>
+      Graphic Designer • Discord Bot Developer
+    </div>
+
+    <div class="socials">
+      <a href="https://discord.gg/astralcustoms" target="_blank"><i class="fab fa-discord"></i></a>
+      <a href="https://www.youtube.com/@astralcustomscs2" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://settings.gg/user/1859468448" target="_blank"><i class="fas fa-gear"></i></a>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">O mnie</div>
+    <div class="card">
+      Jestem developerem C++, JavaScript i HTML oraz graphic designerem.
+      Tworzę nowoczesne strony, projekty UI oraz boty Discord.
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">Umiejętności</div>
+    <div class="skills">
+      <div class="skill">C++</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">HTML</div>
+      <div class="skill">Discord Bots</div>
+      <div class="skill">Graphic Design</div>
+      <div class="skill">UI/UX</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">Profil</div>
+    <div class="profiles">
+
+      <div class="profile">
+        <h3>ASTRAL PROJECT</h3>
+        <a href="astral.html">Otwórz projekt</a>
+      </div>
+
+      <div class="profile">
+        <h3>PORTFOLIO</h3>
+        <a href="portfolio.html">Zobacz portfolio</a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>© 2026 kingsqy</footer>
+
+</div>
+
+</body>
+</html>
